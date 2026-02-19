@@ -15,6 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <script src="https://pl28747575.effectivegatecpm.com/0c/aa/26/0caa2604a0dd1d4e4014d503b8013fee.js" async></script>
       </body>
     </html>
   );
