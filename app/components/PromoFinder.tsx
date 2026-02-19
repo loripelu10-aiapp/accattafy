@@ -39,7 +39,7 @@ const ProductCard = ({ product, index }: any) => {
       }}
     >
       {/* Image */}
-      <div style={{ position: 'relative', aspectRatio: '3/4', background: '#f5f5f7', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', aspectRatio: '3/4', background: '#f5f5f7', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {!imageError ? (
           <Image
             src={product.image}
@@ -48,10 +48,11 @@ const ProductCard = ({ product, index }: any) => {
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             quality={90}
             style={{
-              objectFit: 'cover',
+              objectFit: 'contain',
+              padding: 12,
               opacity: imageLoaded ? 1 : 0,
               transition: 'all 0.6s ease',
-              transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+              transform: isHovered ? 'scale(1.08)' : 'scale(1)',
             }}
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
