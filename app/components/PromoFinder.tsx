@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { SwipeDiscovery } from './swipe/SwipeDiscovery';
+import { LikedProducts } from './swipe/LikedProducts';
+import { useLikedProducts } from '../lib/useLikedProducts';
 
 // Translations
 const translations = {
@@ -359,6 +362,11 @@ export default function PromoFinder() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
 
+  // View mode & liked products
+  const [viewMode, setViewMode] = useState<'grid' | 'swipe'>('grid');
+  const [showLikedPanel, setShowLikedPanel] = useState(false);
+  const { likedProducts, addLike, removeLike, clearAll, likedCount } = useLikedProducts();
+
   // New smart filter states
   const [selectedGenders, setSelectedGenders] = useState<string[]>([]);
   const [selectedRetailers, setSelectedRetailers] = useState<string[]>([]);
@@ -369,6 +377,26 @@ export default function PromoFinder() {
   const t = translations[language as keyof typeof translations];
 
   const [error, setError] = useState<string | null>(null);
+
+  const handleLikeProduct = useCallback((product: any) => {
+    addLike({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      cleanBrand: product.cleanBrand,
+      image: product.image,
+      salePrice: product.salePrice,
+      originalPrice: product.originalPrice,
+      discount: product.discountPercentage || product.discount || 0,
+      affiliateUrl: product.affiliateUrl || product.url,
+      url: product.url
+    });
+  }, [addLike]);
+
+  const handleViewDeal = useCallback((product: any) => {
+    const url = product.affiliateUrl || product.url || product.productUrl;
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  }, []);
 
   // API URL - Next.js API routes
   const API_URL = '/api';
@@ -1410,6 +1438,40 @@ export default function PromoFinder() {
               </svg>
               {t.filters}
             </button>
+
+            {/* View Mode Toggle */}
+            <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, overflow: 'hidden' }}>
+              <button
+                onClick={() => setViewMode('grid')}
+                style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 12px', fontSize: '0.85rem', border: 'none', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s', background: viewMode === 'grid' ? '#ff6b00' : 'transparent', color: viewMode === 'grid' ? '#fff' : 'rgba(255,255,255,0.5)' }}
+              >
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                Grid
+              </button>
+              <button
+                onClick={() => setViewMode('swipe')}
+                style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 12px', fontSize: '0.85rem', border: 'none', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s', background: viewMode === 'swipe' ? '#ff6b00' : 'transparent', color: viewMode === 'swipe' ? '#fff' : 'rgba(255,255,255,0.5)' }}
+              >
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" /></svg>
+                Swipe
+              </button>
+            </div>
+
+            {/* Liked Products Button */}
+            <button
+              onClick={() => setShowLikedPanel(true)}
+              style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, color: '#ef4444', cursor: 'pointer', fontFamily: 'inherit', fontSize: '0.9rem', transition: 'all 0.2s' }}
+            >
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              {likedCount > 0 && (
+                <span style={{ position: 'absolute', top: -6, right: -6, minWidth: 20, height: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', fontSize: '0.7rem', fontWeight: 700, background: '#ef4444', color: '#fff', borderRadius: 10 }}>
+                  {likedCount}
+                </span>
+              )}
+            </button>
+
             <select
               className="sort-select"
               value={sortBy}
@@ -1609,8 +1671,18 @@ export default function PromoFinder() {
           </div>
         )}
 
-        {/* Products Grid */}
-        {!loading && filteredProducts.length > 0 && (
+        {/* Swipe Mode */}
+        {viewMode === 'swipe' && !loading && (
+          <SwipeDiscovery
+            products={filteredProducts}
+            loading={loading}
+            onLike={handleLikeProduct}
+            onViewDeal={handleViewDeal}
+          />
+        )}
+
+        {/* Grid Mode - Products Grid */}
+        {viewMode === 'grid' && !loading && filteredProducts.length > 0 && (
           <div className="products-grid">
             {filteredProducts.map((product: any, index: number) => (
               <ProductCard
@@ -1624,12 +1696,21 @@ export default function PromoFinder() {
         )}
 
         {/* No Results */}
-        {!loading && filteredProducts.length === 0 && (
+        {!loading && filteredProducts.length === 0 && viewMode === 'grid' && (
           <div className="no-results">
             <p>{t.noResults}</p>
           </div>
         )}
       </main>
+
+      {/* Liked Products Panel */}
+      <LikedProducts
+        isOpen={showLikedPanel}
+        onClose={() => setShowLikedPanel(false)}
+        products={likedProducts}
+        onRemove={removeLike}
+        onClearAll={clearAll}
+      />
 
       {/* Last Updated */}
       {lastUpdated && (
