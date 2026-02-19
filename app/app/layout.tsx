@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Accattafy - Find the Best Deals on Fashion & Sportswear",
   description: "Discover amazing discounts on Nike, Adidas, Puma, and more. Swipe through deals, save your favorites, and never miss a sale.",
+  other: {
+    'impact-site-verification': '75c2621b-b26b-4364-99da-4e78fe652315',
+  },
 };
 
 export default function RootLayout({
