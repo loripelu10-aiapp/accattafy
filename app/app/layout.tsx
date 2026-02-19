@@ -16,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{__html: `(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7005426-e395-4d03-b227-ba52ca1878f21.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');`}} />
+      </head>
       <body className="antialiased">
         {children}
         <script src="https://pl28747575.effectivegatecpm.com/0c/aa/26/0caa2604a0dd1d4e4014d503b8013fee.js" async></script>
