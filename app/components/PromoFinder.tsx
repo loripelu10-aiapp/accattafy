@@ -472,7 +472,15 @@ export default function PromoFinder() {
             gap: 20,
           }}>
             {filteredProducts.map((product: any, index: number) => (
-              <ProductCard key={product.id} product={product} index={index} />
+              <React.Fragment key={product.id}>
+                <ProductCard product={product} index={index} />
+                {/* Native Banner ad after every 8 products */}
+                {(index + 1) % 8 === 0 && (
+                  <div style={{ gridColumn: '1 / -1', padding: '12px 0' }}>
+                    <div id="container-1af0909c77fd1bfd1dbc81df6407a7ed"></div>
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
         )}
