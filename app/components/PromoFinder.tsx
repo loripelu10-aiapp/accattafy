@@ -9,8 +9,8 @@ import { useLikedProducts } from '../lib/useLikedProducts';
 // Translations
 const translations = {
   en: {
-    title: 'PROMO',
-    titleAccent: 'FINDER',
+    title: 'ACCA',
+    titleAccent: 'TTAFY',
     subtitle: 'Real-time fashion deals from top brands',
     searchPlaceholder: 'Search brands, styles, products...',
     searchButton: 'Search Deals',
@@ -43,8 +43,8 @@ const translations = {
     language: 'Language'
   },
   it: {
-    title: 'PROMO',
-    titleAccent: 'FINDER',
+    title: 'ACCA',
+    titleAccent: 'TTAFY',
     subtitle: 'Offerte moda in tempo reale dai top brand',
     searchPlaceholder: 'Cerca brand, stili, prodotti...',
     searchButton: 'Cerca Offerte',
@@ -77,8 +77,8 @@ const translations = {
     language: 'Lingua'
   },
   es: {
-    title: 'PROMO',
-    titleAccent: 'FINDER',
+    title: 'ACCA',
+    titleAccent: 'TTAFY',
     subtitle: 'Ofertas de moda en tiempo real de las mejores marcas',
     searchPlaceholder: 'Buscar marcas, estilos, productos...',
     searchButton: 'Buscar Ofertas',
@@ -111,8 +111,8 @@ const translations = {
     language: 'Idioma'
   },
   fr: {
-    title: 'PROMO',
-    titleAccent: 'FINDER',
+    title: 'ACCA',
+    titleAccent: 'TTAFY',
     subtitle: 'Offres mode en temps réel des meilleures marques',
     searchPlaceholder: 'Rechercher marques, styles, produits...',
     searchButton: 'Chercher Offres',
@@ -145,8 +145,8 @@ const translations = {
     language: 'Langue'
   },
   de: {
-    title: 'PROMO',
-    titleAccent: 'FINDER',
+    title: 'ACCA',
+    titleAccent: 'TTAFY',
     subtitle: 'Mode-Angebote in Echtzeit von Top-Marken',
     searchPlaceholder: 'Marken, Stile, Produkte suchen...',
     searchButton: 'Angebote Suchen',
@@ -179,8 +179,8 @@ const translations = {
     language: 'Sprache'
   },
   pt: {
-    title: 'PROMO',
-    titleAccent: 'FINDER',
+    title: 'ACCA',
+    titleAccent: 'TTAFY',
     subtitle: 'Ofertas de moda em tempo real das melhores marcas',
     searchPlaceholder: 'Pesquisar marcas, estilos, produtos...',
     searchButton: 'Buscar Ofertas',

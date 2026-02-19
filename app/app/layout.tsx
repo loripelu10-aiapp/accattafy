@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PromoFinder - Find the Best Deals on Fashion & Sportswear",
-  description: "Discover amazing discounts on Nike, Adidas, Puma, and more. Your go-to platform for finding the best deals on fashion and sportswear.",
+  title: "Accattafy - Find the Best Deals on Fashion & Sportswear",
+  description: "Discover amazing discounts on Nike, Adidas, Puma, and more. Swipe through deals, save your favorites, and never miss a sale.",
 };
 
 export default function RootLayout({
