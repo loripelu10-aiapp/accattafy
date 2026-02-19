@@ -248,10 +248,10 @@ export default function PromoFinder() {
         background: 'linear-gradient(180deg, #fbfbfd 0%, #fff 100%)',
       }}>
         <h1 style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1.05, marginBottom: 16 }}>
-          Find deals you&apos;ll
+          everything on sale.
           <br />
           <span style={{ background: 'linear-gradient(135deg, #ff6b00, #ff3b30)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-            actually love.
+            just scroll or swipe.
           </span>
         </h1>
         <p style={{ fontSize: '1.15rem', color: '#86868b', maxWidth: 480, margin: '0 auto 40px', lineHeight: 1.5 }}>
